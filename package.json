@@ -1,0 +1,19 @@
+{
+  "name": "jsplisp",
+  "version": "0.0.1",
+  "description": "",
+  "main": "lisp",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "uchida",
+  "license": "BSD-3-Clause",
+  "devDependencies": {
+    "gulp": "~3.6.2",
+    "gulp-util": "~2.2.14",
+    "gulp-shell": "~0.2.4"
+  },
+  "dependencies": {
+    "node-getopt": "~0.2.3"
+  }
+}
