@@ -3,9 +3,10 @@ start
 	= expression+
 
 expression
-	= "(" whitespace? expr:list ")" { return expr;}
+	= "(" whitespace* expr:list ")" { return expr;}
 	/ integer
 	/ symbol
+	/ whitespace { return; }
 
 list
 	= (l:expression whitespace? { return l; } )+
@@ -28,7 +29,4 @@ integer "integer"
 	= digits:[0-9]+ { return parseInt(digits.join(""), 10); }
 
 whitespace
-	= [ \t\r]
-
-newline
-	= [\n]
+	= [ \t\r\n]

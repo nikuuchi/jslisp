@@ -8,5 +8,36 @@ opt = require('node-getopt').create([
 		.parseSystem();
 
 var lisp = require('./src/lisp');
-lisp.main(opt, "(defun fibo (n) (if (< n 3) 1 (+ (fibo (- n 1)) (fibo (- n 2)))))(fibo 36)");
-//lisp.main(opt,"(defun tak(x y z) (if (<= x y) y (tak (tak (- x 1) y z) (tak (- y 1) z x) (tak (- z 1) x y))))(tak 2 1 0)");
+
+switch (process.argv.length) {
+	case 2:
+		var readline = require("readline");
+		var repl = readline.createInterface(process.stdin, process.stdout);
+		repl.setPrompt(">>> ");
+
+		repl.prompt();
+
+		repl.on("line", function(line) {
+				lisp.main(opt, line);
+				repl.prompt();
+		});
+
+		repl.on("close", function() {
+				console.log("bye!");
+		});
+		break;
+	case 3:
+		var fs = require('fs');
+		fs.readFile(process.argv[2], 'utf8', function(err, str) {
+				if (err) {
+					console.log(err);
+				} else {
+					console.log(str);
+					lisp.main(opt, str);
+				}
+		});
+		break;
+	default:
+		console.log("invalid argument");
+		break;
+}
