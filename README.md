@@ -1,3 +1,3 @@
-# jspython
+# jslisp
 
-jspython is a pure-javascript implementation of Python
+lisp sample
